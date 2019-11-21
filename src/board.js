@@ -9,24 +9,24 @@ class Board {
                   [null, null, null, null]]
 
 
-  this.addNumber();
-  this.addNumber();
+  this.addNumber(this.grid);
+  this.addNumber(this.grid);
+  this.draw();
   }
 
   
-addNumber () {
+addNumber(grid) {
   let options = []
   for( let i = 0; i < 4; i ++ ) {
     for( let j = 0; j < 4; j ++ ) {
-      if(this.grid[i][j] === null ) {
+      if(grid[i][j] === null ) {
         options.push([i,j])
       }
     }
   };
 
   let newNum = options[Math.floor(Math.random() * options.length)];
-  this.grid[newNum[0]][newNum[1]] = new Tile(this.ctx, 2, [newNum[0],newNum[1]] );
-  this.draw();
+  grid[newNum[0]][newNum[1]] = new Tile(this.ctx, 2, [newNum[0],newNum[1]] );
 };
 
 draw() {
@@ -53,8 +53,8 @@ draw() {
   
 }
 
-slideRight() {
-  this.grid.forEach((row, i) => {
+slideRight(grid) {
+  grid.forEach((row, i) => {
     let array = row.filter(num => num);
     let numEmpty = 4 - array.length;
     let empty = Array(numEmpty).fill(null);
@@ -64,13 +64,14 @@ slideRight() {
         tile.position = [i, j];
       }
     })
-    this.grid[i] = newRow;
+    grid[i] = newRow;
   })
-  this.addNumber()
+  this.addNumber(grid)
+  return grid;
 }
 
-  slideLeft() {
-    this.grid.map((row, i) => {
+  slideLeft(grid) {
+      grid.forEach((row, i) => {
       let array = row.filter(num => num);
       let numEmpty = 4 - array.length;
       let empty = Array(numEmpty).fill(null);
@@ -81,11 +82,54 @@ slideRight() {
         }
       })
      
-      this.grid[i] = newRow;
+      grid[i] = newRow;
     })
-    this.addNumber()
+    this.addNumber(grid);
+    return grid;
   }
 
+  slideUp(grid) {
+   let transposedGrid = [[null, null, null, null],
+                        [null, null, null, null],
+                        [null, null, null, null],
+                        [null, null, null, null]];
+    grid.forEach((row, i) => {
+      row.forEach((tile, j) => {
+        transposedGrid[j][i] = tile;
+      })
+    })
+    let newGrid = this.slideLeft(transposedGrid);
+    newGrid.forEach((row, i) => {
+      row.forEach((tile, j) => {
+        grid[j][i] = tile;
+        if(tile) {
+        tile.position = [j,i];
+        }
+      })
+    })
+    return grid;
+  }
+  slideDown(grid) {
+    let transposedGrid = [[null, null, null, null],
+                          [null, null, null, null],
+                          [null, null, null, null],
+                          [null, null, null, null]];
+    grid.forEach((row, i) => {
+      row.forEach((tile, j) => {
+        transposedGrid[j][i] = tile;
+      })
+    })
+    let newGrid = this.slideRight(transposedGrid);
+    newGrid.forEach((row, i) => {
+      row.forEach((tile, j) => {
+        grid[j][i] = tile;
+        if (tile) {
+          tile.position = [j, i];
+        }
+      })
+    })
+    return grid;
+  }
 
 }
 

@@ -12,21 +12,25 @@ class Game {
   }
 
   pressArrow(e) {
-    console.log("pressed")
+    
   e = e || window.event;
 
   if (e.keyCode == '38') {
-    // slide up
+    this.board.grid = this.board.slideUp(this.board.grid);
+    this.board.draw();
   }
   else if (e.keyCode == '40') {
-    // slide down
+   this.board.grid = this.board.slideDown(this.board.grid);
+   this.board.draw();
   }
   else if (e.keyCode == '37') {
-    this.board.slideLeft();
+    this.board.grid = this.board.slideLeft(this.board.grid);
+    this.board.draw();
   }
   else if (e.keyCode == '39') {
-    this.board.slideRight();
-    console.log("slide")
+   this.board.grid = this.board.slideRight(this.board.grid);
+   this.board.draw()
+   
   }
 
 }
