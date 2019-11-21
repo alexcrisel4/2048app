@@ -24,9 +24,10 @@ addNumber(grid) {
       }
     }
   };
-
+  if(options.length > 0) {
   let newNum = options[Math.floor(Math.random() * options.length)];
   grid[newNum[0]][newNum[1]] = new Tile(this.ctx, 2, [newNum[0],newNum[1]] );
+  }
 };
 
 draw() {
@@ -109,7 +110,9 @@ slideRight(grid) {
     })
     return grid;
   }
+
   slideDown(grid) {
+    
     let transposedGrid = [[null, null, null, null],
                           [null, null, null, null],
                           [null, null, null, null],
@@ -130,6 +133,52 @@ slideRight(grid) {
     })
     return grid;
   }
+
+  combineRight(grid) {
+    for( let i = 3; i >= 0; i--) {
+      for( let j = 3; j >= 0; j--) {
+        if (grid[i][j] && grid[i][j - 1] && grid[i][j].value === grid[i][j - 1].value) {
+          grid[i][j].value = grid[i][j].value * 2;
+          grid[i][j - 1] = null;
+        }
+      }
+    } 
+  }
+
+  combineLeft(grid) {
+    for (let i = 0; i <= 3; i++) {
+      for (let j = 0; j <= 3; j++) {
+        if (grid[i][j] && grid[i][j +1] && grid[i][j].value === grid[i][j + 1].value) {
+          grid[i][j].value = grid[i][j].value * 2;
+          grid[i][j + 1] = null;
+        }
+      }
+    }
+  }
+
+  combineUp(grid) {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j <= 3; j++) {
+        if (grid[i][j] && grid[i + 1][j] && grid[i][j].value === grid[i + 1 ][j].value) {
+          grid[i + 1][j].value = grid[i][j].value * 2;
+          grid[i][j] = null;
+        }
+      }
+    }
+  }
+
+  combineDown(grid) {
+    for (let j = 3; j >= 0; j--) {
+      for (let i = 3; i > 0; i--) {
+        if (grid[i][j] && grid[i - 1][j] && grid[i][j].value === grid[i - 1][j].value) {
+          grid[i - 1][j].value = grid[i][j].value * 2;
+          grid[i][j] = null;
+        }
+      }
+    }
+    console.log(grid);
+  }
+
 
 }
 
