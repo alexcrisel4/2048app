@@ -22,7 +22,7 @@ class Game {
     this.board.grid = this.board.combineUp(this.board.grid);
     this.board.draw();
     if(this.board.boardFull(this.board.grid)) {
-      // console.log(this.board.boardFull(this.board.grid))
+      
       this.board.addNumber(this.board.grid)
       this.createButton();
     }
