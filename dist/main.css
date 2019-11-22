@@ -8,6 +8,7 @@ canvas {
  display: flex;
 flex-direction: column;
 align-items: center;
+font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
 h1 {
@@ -18,6 +19,27 @@ h1 {
 body {
 background: #faf8ef
 }
+
+.button {
+  display: none;
+}
+
+.button.game-over {
+  display: block;
+  position: absolute;
+  top: 400px;
+  z-index: 100;
+  color: black;
+  background-color: #EEEEEE;
+  /* color: #333333; */
+  padding: 6px 12px 6px 12px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  
+}
+
 
 
 

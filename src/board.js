@@ -9,12 +9,20 @@ class Board {
                   [null, null, null, null]]
 
   this.slid = false;
-  this.slidVert = false 
+  
   this.addNumber(this.grid);
   this.addNumber(this.grid);
   this.draw();
   }
 
+boardFull(grid) {
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      if(grid[i][j] === null) return false
+    }
+  }
+  return true
+}
   
 addNumber(grid) {
   let options = []
@@ -30,9 +38,12 @@ addNumber(grid) {
     let num = possibleValues[Math.floor(Math.random() * possibleValues.length)];
   let newNum = options[Math.floor(Math.random() * options.length)];
   grid[newNum[0]][newNum[1]] = new Tile(this.ctx, num, [newNum[0],newNum[1]] );
-  console.log(grid)
   } else {
-    
+    this.ctx.fillStyle ="rgba(0, 0, 0, 0.5)"
+    this.ctx.fillRect(0 ,0 , 400, 400);
+    this.ctx.fillStyle = "white"
+    this.ctx.font = "60px Arial"
+    this.ctx.fillText("Game Over", 200, 200,)
   }
 };
 
@@ -163,7 +174,7 @@ slideRight(grid) {
     if(combined || this.slid) {
       this.slideRight(grid)
       this.addNumber(this.grid)
-    }
+    } 
     return grid;
   }
 
@@ -215,8 +226,7 @@ slideRight(grid) {
       }
     }
     if(combined || this.slid) {
-      console.log(combined);
-      console.log(this.slid);
+     
       this.slideDown(grid)
       this.addNumber(this.grid)
     }
