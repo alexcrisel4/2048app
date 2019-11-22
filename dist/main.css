@@ -33,11 +33,9 @@ background: #faf8ef
   background-color: #EEEEEE;
   /* color: #333333; */
   padding: 6px 12px 6px 12px;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
-  
+  border: 1px solid black;
+  border-radius: 4px;
+  text-decoration: none;
 }
 
 
