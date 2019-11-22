@@ -8,7 +8,8 @@ class Board {
                   [null, null, null, null],
                   [null, null, null, null]]
 
-    this.slid = false;
+  this.slid = false;
+  this.slidVert = false 
   this.addNumber(this.grid);
   this.addNumber(this.grid);
   this.draw();
@@ -97,22 +98,24 @@ slideRight(grid) {
   }
 
   slideUp(grid) {
-    this.slid = false
+    
    let transposedGrid = [[null, null, null, null],
                         [null, null, null, null],
                         [null, null, null, null],
                         [null, null, null, null]];
     grid.forEach((row, i) => {
       row.forEach((tile, j) => {
+        // if (tile.position[0] != j) this.slid = true;
         transposedGrid[j][i] = tile;
       })
     })
     let newGrid = this.slideLeft(transposedGrid);
+    this.slid = false;
     newGrid.forEach((row, i) => {
       row.forEach((tile, j) => {
+        if (newGrid[j][i] != grid[i][j]) this.slid = true;
         grid[j][i] = tile;
-        if(tile) {
-          if(tile.position[0] != i) this.slid = true;
+        if(tile) {  
         tile.position = [j,i];
         }
       })
@@ -121,7 +124,7 @@ slideRight(grid) {
   }
 
   slideDown(grid) {
-    this.slid = false 
+    
     let transposedGrid = [[null, null, null, null],
                           [null, null, null, null],
                           [null, null, null, null],
@@ -132,11 +135,13 @@ slideRight(grid) {
       })
     })
     let newGrid = this.slideRight(transposedGrid);
+    this.slid = false 
     newGrid.forEach((row, i) => {
       row.forEach((tile, j) => {
+        if(newGrid[j][i] != grid[i][j]) this.slid = true;
         grid[j][i] = tile;
         if (tile) {
-          if(tile.position[0] != i) this.slid = true;
+          // if (tile.position[1] != j) this.slid = true;
           tile.position = [j, i];
         }
       })
@@ -157,7 +162,7 @@ slideRight(grid) {
     } 
     if(combined || this.slid) {
       this.slideRight(grid)
-      this.addNumber(grid)
+      this.addNumber(this.grid)
     }
     return grid;
   }
@@ -175,7 +180,7 @@ slideRight(grid) {
     }
     if(combined || this.slid) {
       this.slideLeft(grid)
-      this.addNumber(grid)
+      this.addNumber(this.grid)
     }
     return grid;
   }
@@ -193,7 +198,7 @@ slideRight(grid) {
     }
     if(combined || this.slid) {
       this.slideUp(grid)
-      this.addNumber(grid);
+      this.addNumber(this.grid);
     }
     return grid
   }
@@ -210,8 +215,10 @@ slideRight(grid) {
       }
     }
     if(combined || this.slid) {
+      console.log(combined);
+      console.log(this.slid);
       this.slideDown(grid)
-      this.addNumber(grid)
+      this.addNumber(this.grid)
     }
    return grid;
   }
