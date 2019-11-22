@@ -2,8 +2,30 @@
 </head>
 
 <body>
-
+  <div class="canvas-container">
+  <h1>Twenty48</h1>
   <canvas id="game-canvas" width="400px" height="400px"></canvas>
+  <div>
   <script src="./main.js"></script>
-  <script src="./"
+  <link href="./main.css" rel="stylesheet"></link>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+  
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCBhwhoddq_Pe9w7cil5Yyj-DkUnKAsSqo",
+      authDomain: "twenty48-4f6c8.firebaseapp.com",
+      databaseURL: "https://twenty48-4f6c8.firebaseio.com",
+      projectId: "twenty48-4f6c8",
+      storageBucket: "twenty48-4f6c8.appspot.com",
+      messagingSenderId: "1039927843038",
+      appId: "1:1039927843038:web:92c6bc44c31149faf14a4f"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </body>

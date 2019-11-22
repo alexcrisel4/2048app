@@ -1,7 +1,5 @@
 import Board from "./board";
 
-
-
 class Game {
   constructor(canvas, ctx) {
     this.canvas = canvas;
@@ -17,26 +15,23 @@ class Game {
 
   if (e.keyCode == '38') {
     this.board.grid = this.board.slideUp(this.board.grid);
-    this.board.combineUp(this.board.grid);
+    this.board.grid = this.board.combineUp(this.board.grid);
     this.board.grid = this.board.slideUp(this.board.grid);
     this.board.draw();
   }
   else if (e.keyCode == '40') {
-   this.board.grid = this.board.slideDown(this.board.grid);
-    this.board.combineDown(this.board.grid);
     this.board.grid = this.board.slideDown(this.board.grid);
-   this.board.draw();
+    this.board.grid =this.board.combineDown(this.board.grid);
+    this.board.draw();
   }
   else if (e.keyCode == '37') {
     this.board.grid = this.board.slideLeft(this.board.grid);
-    this.board.combineLeft(this.board.grid);
-    this.board.grid = this.board.slideLeft(this.board.grid);
+    this.board.grid = this.board.combineLeft(this.board.grid);
     this.board.draw();
   }
   else if (e.keyCode == '39') {
    this.board.grid = this.board.slideRight(this.board.grid);
-   this.board.combineRight(this.board.grid);
-   this.board.grid = this.board.slideRight(this.board.grid);
+   this.board.grid = this.board.combineRight(this.board.grid);
    this.board.draw()
   }
 
