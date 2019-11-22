@@ -18,3 +18,16 @@ h1 {
 body {
 background: #faf8ef
 }
+
+.center {
+  display: flex;
+  align-self: center;
+}
+.space {
+  width: 400px;
+}
+.instructions {
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+}
