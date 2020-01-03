@@ -9,6 +9,7 @@ class Board {
                   [null, null, null, null]]
 
   this.slid = false;
+  this.combined = false;
   
   this.addNumber(this.grid);
   this.addNumber(this.grid);
@@ -16,6 +17,7 @@ class Board {
   }
 
 boardFull(grid) {
+  
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 4; j++) {
       if(grid[i][j] === null) return false
@@ -161,17 +163,17 @@ slideRight(grid) {
   }
 
   combineRight(grid) {
-    let combined = false 
+    this.combined = false 
     for( let i = 3; i >= 0; i--) {
       for( let j = 3; j >= 0; j--) {
         if (grid[i][j] && grid[i][j - 1] && grid[i][j].value === grid[i][j - 1].value) {
           grid[i][j].value = grid[i][j].value * 2;
           grid[i][j - 1] = null;
-          combined = true;
+          this.combined = true;
         }
       }
     } 
-    if(combined || this.slid) {
+    if(this.combined || this.slid) {
       this.slideRight(grid)
       this.addNumber(this.grid)
     } 
@@ -179,17 +181,17 @@ slideRight(grid) {
   }
 
   combineLeft(grid) {
-    let combined = false; 
+    this.combined = false; 
     for (let i = 0; i <= 3; i++) {
       for (let j = 0; j <= 3; j++) {
         if (grid[i][j] && grid[i][j +1] && grid[i][j].value === grid[i][j + 1].value) {
-          combined = true;
+          this.combined = true;
           grid[i][j].value = grid[i][j].value * 2;
           grid[i][j + 1] = null;
         }
       }
     }
-    if(combined || this.slid) {
+    if(this.combined || this.slid) {
       this.slideLeft(grid)
       this.addNumber(this.grid)
     }
@@ -197,17 +199,17 @@ slideRight(grid) {
   }
 
   combineUp(grid) {
-    let combined = false
+    this.combined = false
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j <= 3; j++) {
         if (grid[i][j] && grid[i + 1][j] && grid[i][j].value === grid[i + 1 ][j].value) {
           grid[i + 1][j].value = grid[i][j].value * 2;
           grid[i][j] = null;
-          combined = true; 
+          this.combined = true; 
         }
       }
     }
-    if(combined || this.slid) {
+    if(this.combined || this.slid) {
       this.slideUp(grid)
       this.addNumber(this.grid);
     }
@@ -215,17 +217,17 @@ slideRight(grid) {
   }
 
   combineDown(grid) {
-    let combined = false 
+    this.combined = false 
     for (let j = 3; j >= 0; j--) {
       for (let i = 3; i > 0; i--) {
         if (grid[i][j] && grid[i - 1][j] && grid[i][j].value === grid[i - 1][j].value) {
           grid[i - 1][j].value = grid[i][j].value * 2;
           grid[i][j] = null;
-          combined = true;
+          this.combined = true;
         }
       }
     }
-    if(combined || this.slid) {
+    if(this.combined || this.slid) {
      
       this.slideDown(grid)
       this.addNumber(this.grid)
