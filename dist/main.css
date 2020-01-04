@@ -41,11 +41,18 @@ background: #faf8ef
 .links {
   display: flex;
   flex-direction: row;
+  
+  justify-content: center;
 }
 
-.links li  {
-   list-style-type: none;
+footer {
+  text-align: center;
+  
+}
+
+.links a {
    padding-left: 10px;
+  
 }
 
 
