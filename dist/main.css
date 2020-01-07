@@ -52,7 +52,12 @@ footer {
 
 .links a {
    padding-left: 10px;
-  
+  line-height: 35px;
+}
+
+i {
+  height: 35px;
+  width: 35px;
 }
 
 
